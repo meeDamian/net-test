@@ -174,7 +174,7 @@ class Test
     final.ts = Date()
     final.runTime = +new Date - @startTime
 
-    console.log "\nResults: #{JSON.stringify(final, null, '  ')}\n\n\n"
+    console.log "\nResults: #{JSON.stringify(final, null, '  ')}\n\n\n\n\n"
     @uploadResults final
 
   render: =>
@@ -191,7 +191,7 @@ class Test
     else
       chalk.magenta @parseFrame()
 
-    logger chalk.bold('\nUploading results to Parse: ') + status
+    logger chalk.bold('Uploading results to Parse: ') + status
 
 
 new Test()

@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "OSX utility to test (and save) WiFi network stats.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:chester1000/net-test.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
