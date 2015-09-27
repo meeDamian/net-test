@@ -1,14 +1,27 @@
+'use strict'
+
 spinner = require 'elegant-spinner'
 {Parse} = require 'parse/node'
 {exec}  = require 'child_process'
 logger  = require 'log-update'
 async   = require 'async'
 chalk   = require 'chalk'
+meow    = require 'meow'
 
 tap = (o, fn) -> fn(o); o
 merge = (xs...) ->
   if xs?.length > 0
     tap {}, (m) -> m[k] = v for k, v of x for x in xs
+
+cli = meow
+  help: [
+    'Usage'
+    '  $ net-test'
+    ''
+    'Options'
+    '  --no-parse  Skip uploading results to parse'
+    ''
+  ]
 
 class Geo
   CMD: [
@@ -160,10 +173,9 @@ class Test
         clearInterval parseIntervalId
         @renderParse response.id
 
-      error: (lala, err) =>
-        console.log 'error', lala, err
+      error: (something, err) =>
+        console.log 'error', something, err
         clearInterval parseIntervalId
-
 
   results: (err, res) =>
     clearInterval @intervalId
@@ -174,15 +186,18 @@ class Test
     final.ts = Date()
     final.runTime = +new Date - @startTime
 
-    console.log "\nResults: #{JSON.stringify(final, null, '  ')}\n\n\n\n\n"
-    @uploadResults final
+    console.log "\nResults: #{JSON.stringify(final, null, '  ')}\n"
+
+    unless cli.flags.parse is false
+      console.log "\n\n\n\n"
+      @uploadResults final
 
   render: =>
     logger [
       ''
-      "      SSID: " + @ssid.getStatus()
-      "  location: " +  @geo.getStatus()
-      "     speed: " +  @net.getStatus()
+      '      SSID: ' + @ssid.getStatus()
+      '  location: ' +  @geo.getStatus()
+      '     speed: ' +  @net.getStatus()
     ].join '\n'
 
   renderParse: (id=null) =>
@@ -191,7 +206,6 @@ class Test
     else
       chalk.magenta @parseFrame()
 
-    logger chalk.bold('Uploading results to Parse: ') + status
-
+    logger chalk.bold('Uploading results to Parse: ') + status + '\n'
 
 new Test()
