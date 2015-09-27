@@ -1,6 +1,6 @@
 {
   "name": "net-test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OSX utility to test WiFi quality and save results for future reference.",
   "preferGlobal": true,
   "main": "cli.js",
