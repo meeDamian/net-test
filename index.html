@@ -11,16 +11,9 @@
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-      google-map {
-        width: 100%;
-        height: 100%;
-      }
-
-    </style>
 
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/geo-location/geo-location.html">
     <link rel="import" href="bower_components/google-map/google-map.html">
     <link rel="import" href="bower_components/google-map/google-map-marker.html">
 
@@ -29,11 +22,26 @@
       Parse.initialize("5mhCAqwUlwT6tHrC0PmYda73KzAzQ0eSoFbIi6WV", "slNZDFWnonWXkam1XjTRhSqE0fwdJo111cEjZ2lm");
 
     </script>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100vh;
+      }
+      google-map {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
 
   </head>
-  <body>
+  <body fullbleed>
 
-    <google-map latitude="37.77493" longitude="-122.41942"></google-map>
+    <geo-location watch-pos latitude="{{lat}}" longitude="{{lng}}"></geo-location>
+
+    <google-map latitude="{{lat}}" longitude="{{lng}}">
+      <google-map-marker latitude="37.779" longitude="-122.3892" title="Go Giants!"></google-map-marker>
+      <google-map-marker latitude="37.777" longitude="-122.38911"></google-map-marker>
+    </google-map>
 
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

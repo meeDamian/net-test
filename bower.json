@@ -18,6 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "google-map": "GoogleWebComponents/google-map#~1.1.2"
+    "google-map": "GoogleWebComponents/google-map#~1.1.2",
+    "geo-location": "ebidel/geo-location#~1.0.0"
   }
 }
