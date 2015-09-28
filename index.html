@@ -1,1 +1,47 @@
-lalala
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Net Test Map MArkers</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google" content="notranslate" />
+    <!-- <meta meta-theme name="theme-color" content="" /> -->
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      google-map {
+        width: 100%;
+        height: 100%;
+      }
+
+    </style>
+
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/google-map/google-map.html">
+    <link rel="import" href="bower_components/google-map/google-map-marker.html">
+
+    <script src="//www.parsecdn.com/js/parse-1.6.2.min.js"></script>
+    <script type="text/javascript">
+      Parse.initialize("5mhCAqwUlwT6tHrC0PmYda73KzAzQ0eSoFbIi6WV", "slNZDFWnonWXkam1XjTRhSqE0fwdJo111cEjZ2lm");
+
+    </script>
+
+  </head>
+  <body>
+
+    <google-map latitude="37.77493" longitude="-122.41942"></google-map>
+
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-12389124-6','auto');ga('send','pageview');
+    </script>
+  </body>
+</html>
