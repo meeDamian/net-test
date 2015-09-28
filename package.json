@@ -31,7 +31,7 @@
     "log-update": "^1.0.1",
     "meow": "^3.3.0",
     "parse": "^1.6.3",
-    "speed-test": "git@github.com:sindresorhus/speed-test.git#bc60a2f"
+    "speed-test": "^1.2.0"
   },
   "devDependencies": {
     "coffee-script": "^1.10.0"
