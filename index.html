@@ -12,37 +12,51 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" />
 
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="bower_components/geo-location/geo-location.html">
-    <link rel="import" href="bower_components/google-map/google-map.html">
-    <link rel="import" href="bower_components/google-map/google-map-marker.html">
-
     <script src="//www.parsecdn.com/js/parse-1.6.2.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8FqjNUgHLW1sCvP_kNAqQVL_2OOr5LTE&signed_in=true&callback=initMap"></script>
     <script type="text/javascript">
-      Parse.initialize("5mhCAqwUlwT6tHrC0PmYda73KzAzQ0eSoFbIi6WV", "slNZDFWnonWXkam1XjTRhSqE0fwdJo111cEjZ2lm");
+      Parse.initialize('5mhCAqwUlwT6tHrC0PmYda73KzAzQ0eSoFbIi6WV', 'slNZDFWnonWXkam1XjTRhSqE0fwdJo111cEjZ2lm');
+      var WiFi = Parse.Object.extend("WiFi");
+      var query = new Parse.Query(WiFi);
+      query.find({
+        success: function(results) {
+          for (var i = 0; i < results.length; i++) {
+            var point = results[i];
+
+            var l = point.get('location');
+            new google.maps.Marker({
+              map: window.map,
+              position: {
+                lat: l._latitude,
+                lng: l._longitude
+              },
+              title: point.get('ssid')
+            });
+          }
+        },
+        error: function(error) {
+          console.error("Error: " + error.code + " " + error.message);
+        }
+      });
+
+      function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        window.map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 4
+        });
+      }
 
     </script>
-    <style>
-      html, body {
-        margin: 0;
-        height: 100vh;
-      }
-      google-map {
-        width: 100%;
-        height: 100%;
-      }
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
     </style>
 
   </head>
-  <body fullbleed>
-
-    <geo-location watch-pos latitude="{{lat}}" longitude="{{lng}}"></geo-location>
-
-    <google-map apiKey="AIzaSyC8FqjNUgHLW1sCvP_kNAqQVL_2OOr5LTE" signedIn="true" latitude="{{lat}}" longitude="{{lng}}">
-      <google-map-marker latitude="37.779" longitude="-122.3892" title="Go Giants!"></google-map-marker>
-      <google-map-marker latitude="37.777" longitude="-122.38911"></google-map-marker>
-    </google-map>
-
+  <body>
+    <div id="map"></div>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
