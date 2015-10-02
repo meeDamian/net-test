@@ -1,7 +1,7 @@
 fs = require 'fs-extended'
 
 EXT_JS = '.js'
-EXT_MAP = EXT_JS + '.map'
+EXT_MAP = '.map'
 
 fs.listAll '.',
   recursive: true
@@ -12,6 +12,6 @@ fs.listAll '.',
 
 , (err, list) ->
   for file in list
-    console.log "Removing #{file+EXT_JS} and #{file+EXT_MAP}..."
+    console.log "Removing #{file + EXT_JS}[#{EXT_MAP}]..."
     fs.deleteFile file + EXT_JS
-    fs.deleteFile file + EXT_MAP
+    fs.deleteFile file + EXT_JS + EXT_MAP
