@@ -1,6 +1,6 @@
-# net-test [![Build Status](https://travis-ci.org/chester1000/net-test.svg?branch=master)](https://travis-ci.org/chester1000/net-test)
+# net-test [![Build Status](https://travis-ci.org/chester1000/net-test.svg?branch=master)](https://travis-ci.org/chester1000/net-test) [![Dependency Status](https://david-dm.org/chester1000/net-test.svg)](https://david-dm.org/chester1000/net-test)
 
-> Test the quality of your wifi (using [speedtest.net](http://www.speedtest.net)) and get the results saved for future reference. 
+> Test the quality of your wifi (using [speedtest.net](http://www.speedtest.net)) and get the results saved for future reference.
 
 ![](screenshot.gif)
 
