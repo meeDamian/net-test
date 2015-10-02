@@ -1,2 +1,4 @@
 *.coffee
+*.js.map
 screenshot.gif
+postPublishCleanup.*
