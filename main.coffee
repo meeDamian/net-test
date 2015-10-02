@@ -7,6 +7,27 @@ logger  = require 'log-update'
 async   = require 'async'
 chalk   = require 'chalk'
 meow    = require 'meow'
+os      = require 'os'
+
+Net     = require './NetCore'
+
+prefix = switch os.platform()
+  when 'darwin' then 'mac'
+  when 'win32'  then null
+  when 'linux'  then null
+  else null
+
+if prefix is null
+  console.log chalk.red [
+    ''
+    '  Your operating system is currently not supported. PRs welcome at https://goo.gl/clvSD4'
+    ''
+  ].join '\n'
+  process.exit 1
+
+Ssid = require "./#{prefix}/Ssid"
+Geo  = require "./#{prefix}/Geo"
+
 
 tap = (o, fn) -> fn(o); o
 merge = (xs...) ->
@@ -23,105 +44,6 @@ cli = meow
     ''
   ]
 
-class Geo
-  CMD: [
-    "#{__dirname}/whereami"
-    'head -n2'
-    "sed 's/Latitude: //'"
-    "sed 's/Longitude: //'"
-  ].join ' | '
-  GOOGLE_MAPS_LINK: "https://www.google.com/maps/@%lat%,%lng%,%zoom%z"
-  DEFAULT_ZOOM: 15
-  status: 0
-  constructor: -> @frame = spinner()
-  getStatus: ->
-    switch @status
-      when  0 then chalk.yellow @frame()
-      when  1 then chalk.green('done') + chalk.gray " (#{@lat}, #{@lng})"
-      when -1 then chalk.red 'fail'
-
-  exec: (cb) =>
-    exec @CMD, (err, stdout, stderr) =>
-      err ?= stderr
-      if err
-        console.error "GEO Error:", err
-        @status = -1
-        cb err
-        return
-
-      [@lat, @lng] = stdout.split '\n'
-        .map parseFloat
-        .splice 0, 2
-
-      @status = 1
-      cb null,
-        lat: @lat
-        lng: @lng
-        url: @GOOGLE_MAPS_LINK.replace '%zoom%', @DEFAULT_ZOOM
-          .replace '%lat%', @lat
-          .replace '%lng%', @lng
-
-class Net
-  CMD: "#{__dirname}/node_modules/.bin/speed-test --json"
-  status: 0
-  constructor: -> @frame = spinner()
-  getStatus: ->
-    switch @status
-      when  0 then chalk.yellow @frame()
-      when  1 then chalk.green('done') + chalk.gray " (#{@dl}/#{@up} Mbps)"
-      when -1 then chalk.red 'fail'
-
-  exec: (cb) =>
-    exec @CMD, (err, stdout, stderr) =>
-      err ?= stderr
-      if err
-        console.error "NET Error:", err
-        @status = -1
-        cb err
-        return
-
-      info = JSON.parse stdout
-      @status = 1
-      @dl = info.download
-      @up = info.upload
-      cb null, info
-
-class Ssid
-  CMD: '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
-  status: 0
-  constructor: -> @frame = spinner()
-  getStatus: ->
-    switch @status
-      when  0 then chalk.yellow @frame()
-      when  1 then chalk.green('done') + chalk.gray " (#{@ssid})"
-      when -1 then chalk.red 'fail'
-
-  exec: (cb) =>
-    exec @CMD, (err, stdout, stderr) =>
-      err ?= stderr
-      if err
-        console.error "SSID Error:", err
-        @status = -1
-        cb err
-        return
-
-      o = {}
-      for s in stdout.split '\n'
-        line = s.trim()
-        if line.startsWith 'SSID:'
-          @ssid = o.ssid = s.split(':')[1].trim()
-          continue
-
-        if line.startsWith 'link auth:'
-          o.open = s.split(':')[1].trim() is 'none'
-          continue
-
-        if line.startsWith 'channel:'
-          o.channel = s.split(':')[1].trim()
-          continue
-
-      @status = 1
-      cb null, o
 
 class Test
   PARSE_ID: '5mhCAqwUlwT6tHrC0PmYda73KzAzQ0eSoFbIi6WV'
