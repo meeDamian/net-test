@@ -1,6 +1,6 @@
 'use strict'
 
-GeoCore = require '../GeoCore.coffee'
+GeoCore = require '../GeoCore'
 {exec}  = require 'child_process'
 
 module.exports = class Geo extends GeoCore

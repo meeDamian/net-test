@@ -1,6 +1,6 @@
 'use strict'
 
-SsidCore  = require '../SsidCore.coffee'
+SsidCore  = require '../SsidCore'
 {exec}    = require 'child_process'
 
 module.exports = class Ssid extends SsidCore
