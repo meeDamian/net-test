@@ -10,7 +10,7 @@
     "url": "git@github.com:chester1000/net-test.git"
   },
   "scripts": {
-    "prepublish": "coffee -cb --no-header .",
+    "prepublish": "coffee -cbm --no-header .",
     "postpublish": "coffee postPublishCleanup.coffee",
     "start": "coffee main.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
