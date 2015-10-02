@@ -103,6 +103,14 @@ class Test
     clearInterval @intervalId
     @render()
 
+    if err
+      console.error chalk.red [
+        ''
+        '  Some of the required tests have failed. Try again later or quickly reinstall your system.'
+        ''
+      ].join '\n'
+      return
+
     final = merge res.net, res.geo, res.ssid
 
     final.ts = Date()
