@@ -2,6 +2,11 @@
 
 TheCore = require './TheCore'
 
+#
+# Extend this object and return `out` object with following fields:
+#  **lat**   - [Number] Latitude of current location
+#  **lng**   - [Number] Longitude of current location
+#
 module.exports = class GeoCore extends TheCore
   GOOGLE_MAPS_LINK: "https://www.google.com/maps/@%lat%,%lng%,%zoom%z"
   DEFAULT_ZOOM: 15
