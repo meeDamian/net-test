@@ -22,7 +22,7 @@ $ net-test --help
     $ net-test
 
   Options
-    --json  Output the result as JSON
+    --no-parse  Skip uploading results to parse
 ```
 
 
