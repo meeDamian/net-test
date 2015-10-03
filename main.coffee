@@ -13,8 +13,8 @@ Net     = require './NetCore'
 
 prefix = switch os.platform()
   when 'darwin' then 'mac'
-  when 'win32'  then null
   when 'linux'  then null
+  when 'win32'  then null
   else null
 
 if prefix is null
@@ -75,8 +75,8 @@ class Test
 
   processForParse: (obj) ->
     geoPoint = new Parse.GeoPoint
-      latitude: obj.lat
-      longitude: obj.lng
+      latitude:   obj.lat
+      longitude:  obj.lng
 
     ssid:         obj.ssid
     download:     obj.download
