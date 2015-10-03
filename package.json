@@ -32,6 +32,7 @@
     "log-update": "^1.0.1",
     "meow": "^3.3.0",
     "parse": "^1.6.3",
+    "request": "^2.64.0",
     "speed-test": "^1.2.0"
   },
   "devDependencies": {

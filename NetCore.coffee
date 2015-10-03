@@ -1,7 +1,8 @@
 'use strict'
 
-TheCore = require './TheCore'
 {exec}  = require 'child_process'
+
+TheCore = require './TheCore'
 
 #
 # It should work on any system, but if that's not the case, then...

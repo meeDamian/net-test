@@ -1,7 +1,8 @@
 'use strict'
 
-SsidCore  = require '../SsidCore'
 {exec}    = require 'child_process'
+
+SsidCore  = require '../SsidCore'
 
 module.exports = class Ssid extends SsidCore
   CMD: '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'

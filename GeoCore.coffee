@@ -12,6 +12,9 @@ module.exports = class GeoCore extends TheCore
   GOOGLE_MAPS_LINK: "https://www.google.com/maps/@%lat%,%lng%,%zoom%z"
   DEFAULT_ZOOM: 15
   _processResults: (out) =>
+    unless out.lat and out.lng and out.accuracy
+      return null
+
     @lat = out.lat
     @lng = out.lng
 

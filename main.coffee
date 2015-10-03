@@ -26,7 +26,13 @@ if prefix is null
   process.exit 1
 
 Ssid = require "./#{prefix}/Ssid"
+try
+  Ssid2 = require "./#{prefix}/SsidFallback"
+
 Geo  = require "./#{prefix}/Geo"
+try Geo2 = require "./#{prefix}/GeoFallback"
+catch ignore
+  try Geo2 = require './GeoFallbackCore'
 
 
 tap = (o, fn) -> fn(o); o
@@ -44,7 +50,6 @@ cli = meow
     ''
   ]
 
-
 class Test
   PARSE_ID: '5mhCAqwUlwT6tHrC0PmYda73KzAzQ0eSoFbIi6WV'
   PARSE_KEY: 'slNZDFWnonWXkam1XjTRhSqE0fwdJo111cEjZ2lm'
@@ -55,9 +60,9 @@ class Test
 
     @initParse()
 
-    @net = new Net()
-    @geo = new Geo()
-    @ssid = new Ssid()
+    @ssid = new Ssid Ssid2
+    @geo  = new Geo Geo2
+    @net  = new Net()
 
     @intervalId = setInterval @render, 50
 
