@@ -3,6 +3,10 @@
 spinner = require 'elegant-spinner'
 chalk   = require 'chalk'
 
+#
+# This is The Core for all testers. Handles their status
+# updates, and triggers fallback if available and necessary.
+#
 module.exports = class TheCore
   CMD: null
   status: 0

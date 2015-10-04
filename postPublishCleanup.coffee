@@ -3,6 +3,9 @@ fs = require 'fs-extended'
 EXT_JS = '.js'
 EXT_MAP = '.map'
 
+#
+# Is called after `npm publish`, and removes all unnecessary compiled js files
+#
 fs.listAll '.',
   recursive: true
   filter: (itemPath) ->

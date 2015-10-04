@@ -4,6 +4,10 @@ request = require 'request'
 
 GeoCore = require './GeoCore'
 
+#
+# Uses Google Geolocation services. More here:
+#   https://developers.google.com/maps/documentation/geolocation/intro?hl=en
+#
 module.exports = class GeoFallbackCore extends GeoCore
   GOOGLE_MAPS_API_URL: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCbMKtc3LqHHzr8tesiaRSunXVY0V-2vng"
   _askGoogle: (cb, requestBody={}) =>
