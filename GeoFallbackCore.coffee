@@ -17,7 +17,7 @@ module.exports = class GeoFallbackCore extends GeoCore
       json: true
       body: requestBody
 
-    , (err, _, body) =>
+    , (err, _, body) ->
       if err
         cb err
         return

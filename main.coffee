@@ -38,7 +38,7 @@ catch ignore
 tap = (o, fn) -> fn(o); o
 merge = (xs...) ->
   if xs?.length > 0
-    tap {}, (m) -> m[k] = v for k, v of x for x in xs
+    tap {}, (m) -> (m[k] = v for k, v of x for x in xs)
 
 cli = meow
   help: [
@@ -100,7 +100,7 @@ class Test
         clearInterval parseIntervalId
         @renderParse response.id
 
-      error: (something, err) =>
+      error: (something, err) ->
         console.log 'error', something, err
         clearInterval parseIntervalId
 

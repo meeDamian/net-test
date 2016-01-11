@@ -15,7 +15,7 @@ TheCore = require './TheCore'
 module.exports = class NetCore extends TheCore
   CMD: "#{__dirname}/node_modules/.bin/speed-test --json"
   _exec: (cb) =>
-    exec @CMD, (err, stdout, stderr) =>
+    exec @CMD, (err, stdout, stderr) ->
       err ?= stderr
       if err
         cb err

@@ -7,7 +7,7 @@ SsidCore  = require '../SsidCore'
 module.exports = class Ssid extends SsidCore
   CMD: '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
   _exec: (cb) =>
-    exec @CMD, (err, stdout, stderr) =>
+    exec @CMD, (err, stdout, stderr) ->
       err ?= stderr
       if err
         cb err

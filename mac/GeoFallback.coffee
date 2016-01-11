@@ -7,7 +7,7 @@ GeoFallbackCore = require '../GeoFallbackCore'
 module.exports = class GeoFallback extends GeoFallbackCore
   CMD: '/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s'
   getWifis: (cb) =>
-    exec @CMD, (err, stdout, stderr) =>
+    exec @CMD, (err, stdout, stderr) ->
       err ?= stderr
       if err
         cb err
