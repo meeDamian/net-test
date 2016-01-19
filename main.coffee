@@ -47,7 +47,7 @@ cli = meow
     ''
     'Options'
     '  --no-parse  Skip uploading results to parse'
-    ''
+    ' '
   ]
 
 class Test

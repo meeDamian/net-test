@@ -1,7 +1,7 @@
 {
   "name": "net-test",
   "version": "0.0.9",
-  "description": "OSX utility to test WiFi quality and save results for future reference.",
+  "description": "CLI utility to test WiFi quality and save results for future reference.",
   "preferGlobal": true,
   "main": "cli.js",
   "bin": "./cli.js",
@@ -9,6 +9,10 @@
     "type": "git",
     "url": "git@github.com:chester1000/net-test.git"
   },
+  "os": [
+    "darwin",
+    "linux"
+  ],
   "scripts": {
     "prepublish": "coffee -cbm --no-header .",
     "postpublish": "coffee postPublishCleanup.coffee",
@@ -18,6 +22,7 @@
   "keywords": [
     "osx",
     "mac",
+    "ubuntu",
     "speedtest",
     "internet",
     "test",
