@@ -1,6 +1,6 @@
 {
   "name": "net-test",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI utility to test WiFi quality and save results for future reference.",
   "preferGlobal": true,
   "main": "cli.js",
