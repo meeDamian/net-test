@@ -7,7 +7,7 @@
   "bin": "./cli.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:chester1000/net-test.git"
+    "url": "git@github.com:meeDamian/net-test.git"
   },
   "os": [
     "darwin",
