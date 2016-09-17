@@ -14,7 +14,7 @@ module.exports = class Geo extends GeoCore
 
   ].join ' | '
   _exec: (cb) =>
-    exec @CMD, (err, stdout, stderr) ->
+    exec @CMD, timeout: 9999, (err, stdout, stderr) ->
       err ?= stderr
       if err
         cb err
